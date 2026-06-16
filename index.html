@@ -298,6 +298,10 @@
     .btn-logout{background:var(--turf);color:#fff;border:none;border-radius:50px;padding:.4rem 1rem;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit}
     .post-wrap{display:none;text-align:center;margin-top:1.6rem}
     body.admin .post-wrap{display:block}
+    .demo-login-wrap{text-align:center;margin-top:1.8rem}
+    body.admin .demo-login-wrap{display:none}
+    .demo-login-btn{display:inline-flex;align-items:center;gap:.5rem;background:rgba(201,162,75,.13);border:1.5px dashed var(--gold);color:var(--turf);border-radius:50px;padding:.72rem 1.4rem;font-family:inherit;font-weight:700;font-size:.9rem;cursor:pointer;transition:.2s}
+    .demo-login-btn:hover{background:var(--gold);color:var(--ink)}
     .ycard-del{display:none!important}
     body.admin .ycard-del{display:inline-flex!important}
 
@@ -443,6 +447,8 @@
     <p class="sec-label fi">Weekly Prediction</p>
     <h2 class="sec-title fi">予想 ＆ 買い目</h2>
     <div class="sec-bar fi"></div>
+
+    <div class="demo-login-wrap fi"><button class="demo-login-btn" id="demoLoginBtn">🔑 デモ用ログイン（押すと予想・買い目の投稿を試せます）</button></div>
 
     <div class="admin-banner" id="adminBanner">
       <span>🔒 管理モードでログイン中 — 「投稿」「削除」は管理者にだけ表示されています</span>
@@ -665,6 +671,7 @@
     document.getElementById('loginSubmit').addEventListener('click',tryLogin);
     document.getElementById('adminPw').addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin();});
     document.getElementById('logoutBtn').addEventListener('click',()=>{setAdmin(false);toast('管理モードを終了しました');});
+    document.getElementById('demoLoginBtn').addEventListener('click',()=>{setAdmin(true);toast('デモ用ログインしました。「予想・買い目を投稿する」からお試しください');document.getElementById('yosou').scrollIntoView({behavior:'smooth'});});
 
     /* ===== PREDICTIONS DATA ===== */
     const STORE='keiba_predictions_v2';
